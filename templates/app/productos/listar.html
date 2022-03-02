@@ -1,0 +1,33 @@
+{% extends 'app/base.html' %}
+{% load humanize %}
+{% block contenido %}
+
+    <table class="table table-hover table-responsive-sm tabl mt-4">
+        <thead class="thead-dark">
+            <tr>
+                <th>Nombre</th>
+                <th>Precio</th>
+                <th>Marca</th>
+                <th>Nuevo</th>
+                <th>Opciones</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for producto in productos %}
+            
+                <tr>
+                    <th>{{producto.nombre | title}}</th>
+                    <th>{{producto.precio | intcomma }}</th>
+                    <th>{{producto.marca | title }}</th>
+                    <th>{{producto.nuevo }}</th>
+                    <th>
+                        <a href="{% url 'modificar-producto' producto.id %}" class="btn btn-warning">edit</a>
+                        <a href="{% url 'eliminar-producto' producto.id %}" class="btn btn-danger">delete</a>
+                    </th>
+                </tr>
+            
+            {% endfor %}
+        </tbody>
+    </table>
+
+{% endblock contenido %}

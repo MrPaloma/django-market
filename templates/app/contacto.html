@@ -1,0 +1,34 @@
+{% extends 'app/base.html' %}
+{% load static %}
+
+{% block css %}
+{% endblock css %}
+
+{% block js %}
+{% endblock js %}
+
+
+{% block contenido %}
+{% load crispy_forms_tags %}
+<div class="row">
+    <div class="col-12 col-md-6 offset-md-3">
+        <h2>Contactanos!</h2>
+        <form action=""  method="POST">
+            {% csrf_token %}
+            {{ form | crispy }}
+            <br>
+            <div class="d-flex justify-content-end">
+                <button type="reset" id="btnEnviar" class="btn btn-secondary mr-1">Cancelar</button>
+                <button type="submit" id="btnEnviar" class="btn btn-primary">Enviar</button>
+            </div>
+        </form>
+        {{mensaje}}
+        
+    </div>
+</div>
+
+<table id="tablacontactos">
+
+</table>
+
+{% endblock contenido %}
