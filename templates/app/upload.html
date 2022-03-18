@@ -114,6 +114,7 @@ function uploadFile(signedUrl) {
     ajax.addEventListener("loadend", loadendHandler, false)
     ajax.open("PUT", signedUrl);
     ajax.setRequestHeader('Content-Type', file.type)
+    ajax.setRequestHeader('Access-Control-Allow-Origin', '*')
     ajax.setRequestHeader('x-amz-acl', 'public-read')
     ajax.send(formdata);
 }
