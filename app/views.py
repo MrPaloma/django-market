@@ -139,7 +139,7 @@ class SignedURLView(generic.View):
 class UploadView(generic.CreateView):
     template_name = "upload.html"
     model = Archivo
-    fields = ['file']
+    fields = ['archivo', 'nombre']
 
     def get_success_url(self):
         return reverse("upload")
