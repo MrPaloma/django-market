@@ -137,7 +137,7 @@ class SignedURLView(generic.View):
         return JsonResponse({"url": url})
 
 class UploadView(generic.CreateView):
-    template_name = "upload.html"
+    template_name = "app/upload.html"
     model = Archivo
     fields = ['archivo', 'nombre']
 
