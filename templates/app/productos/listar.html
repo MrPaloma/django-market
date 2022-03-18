@@ -1,4 +1,26 @@
 {% extends 'app/base.html' %}
+
+{% block js %}
+
+<script>
+    function eliminarProducto(id) {
+        Swal.fire({
+            "title" : "Estas seguro?",
+            "text" : "Esta accion no se puede deshacer",
+            "icon" : "question",
+            "showCancelButton" : true,
+            "reverseButtons" : true
+        })
+        .then(function(result) {
+            if(result.isConfirmed) {
+                window.location.href = `/eliminar-producto/${id}`
+            }
+        })
+    }
+</script>
+
+{% endblock js %}
+
 {% load humanize %}
 {% block contenido %}
 
@@ -13,21 +35,25 @@
             </tr>
         </thead>
         <tbody>
-            {% for producto in productos %}
+            {% for producto in entity %}
             
                 <tr>
-                    <th>{{producto.nombre | title}}</th>
-                    <th>{{producto.precio | intcomma }}</th>
-                    <th>{{producto.marca | title }}</th>
-                    <th>{{producto.nuevo }}</th>
+                    <th>{{ producto.nombre | title}}</th>
+                    <th>{{ producto.precio | intcomma }}</th>
+                    <th>{{ producto.marca | title }}</th>
+                    <th>{{ producto.nuevo }}</th>
                     <th>
                         <a href="{% url 'modificar-producto' producto.id %}" class="btn btn-warning">edit</a>
-                        <a href="{% url 'eliminar-producto' producto.id %}" class="btn btn-danger">delete</a>
+                        <a href="#" onclick="eliminarProducto({{producto.id}})" class="btn btn-danger">delete</a>
                     </th>
                 </tr>
             
             {% endfor %}
         </tbody>
     </table>
+    <hr>
+    <div>
+        {% include 'app/paginator.html' %}
+    </div>
 
 {% endblock contenido %}

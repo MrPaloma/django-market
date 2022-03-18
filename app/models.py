@@ -1,4 +1,3 @@
-from tkinter import CASCADE
 from django.db import models
 
 # Create your models here.
@@ -36,3 +35,8 @@ class Contacto(models.Model):
 
     def __str__(self) -> str:
         return self.nombre
+
+class Archivo(models.Model):
+    created_at = models.DateField(auto_now_add=True)
+    nombre = models.CharField(max_length=100)
+    archivo = models.ImageField(upload_to="archivos", null=True)
