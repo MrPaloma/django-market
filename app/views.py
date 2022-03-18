@@ -1,7 +1,7 @@
 import boto3
 from django.http import Http404
 from django.shortcuts import render, redirect, get_object_or_404
-from .models import Producto
+from .models import Archivo, Producto
 from .forms import ContactoForm, ProductoForm, CustomUserCreationForm
 from django.contrib import messages
 from django.contrib.auth import authenticate, login # permite autenticar al usuario
@@ -139,7 +139,7 @@ class SignedURLView(generic.View):
 
 class UploadView(generic.CreateView):
     template_name = "upload.html"
-    model = UploadFile
+    model = Archivo
     fields = ['file']
 
     def get_success_url(self):
@@ -148,6 +148,6 @@ class UploadView(generic.CreateView):
     def get_context_data(self, **kwargs):
         context = super(UploadView, self).get_context_data(**kwargs)
         context.update({
-            "uploads": UploadFile.objects.all()
+            "uploads": Archivo.objects.all()
         })
         return context
